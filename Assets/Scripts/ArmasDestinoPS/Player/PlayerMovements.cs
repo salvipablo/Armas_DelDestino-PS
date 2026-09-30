@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using ArmasDestinoPS.Means;
 
 namespace ArmasDestinoPS.Player
 {
@@ -11,6 +13,9 @@ namespace ArmasDestinoPS.Player
       [SerializeField] public float jumpForce;
       public bool itCanJump;
       private Rigidbody _rb;
+      [SerializeField] private float rayDistance = 3f;
+      private GameObject _cameraObject;
+      [SerializeField] private TextMeshProUGUI objectNameText;
     #endregion
     
     #region Methods
@@ -32,6 +37,23 @@ namespace ArmasDestinoPS.Player
         Walk();
         Look(horizontalTwistMouse, verticalTwistMouse);
         Jump();
+        CheckInteraction();
+      }
+      
+      private void CheckInteraction()
+      {
+        Ray ray = new Ray(_camera.position, _camera.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
+        {
+          _cameraObject = hit.collider.gameObject;
+          InteractableObject interactable = _cameraObject.GetComponent<InteractableObject>();
+
+          if (interactable != null) objectNameText.text = interactable.ObjectName;
+          else objectNameText.text = "";
+        }
+
+        Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
       }
       
       private void Walk()
