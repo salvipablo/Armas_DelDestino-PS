@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
+using ArmasDestinoPS.Managers;
 using ArmasDestinoPS.Means;
+using ArmasDestinoPS.Inventory;
 
 namespace ArmasDestinoPS.Player
 {
@@ -22,7 +24,7 @@ namespace ArmasDestinoPS.Player
       private void Start()
       {
         _rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         _camera = transform.Find("Camera");
         itCanJump =  true;
       }
@@ -34,23 +36,42 @@ namespace ArmasDestinoPS.Player
 
       private void Movements(float horizontalTwistMouse, float verticalTwistMouse)
       {
-        Walk();
-        Look(horizontalTwistMouse, verticalTwistMouse);
-        Jump();
-        CheckInteraction();
+        if (!InventoryManager.Instance.TheInventoryOpen)
+        {
+          Walk();
+          Look(horizontalTwistMouse, verticalTwistMouse);
+          Jump();
+          CheckInteraction();
+        }
       }
       
       private void CheckInteraction()
       {
+        InteractableObject interactable = null;
         Ray ray = new Ray(_camera.position, _camera.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
         {
           _cameraObject = hit.collider.gameObject;
-          InteractableObject interactable = _cameraObject.GetComponent<InteractableObject>();
+          interactable = _cameraObject.GetComponent<InteractableObject>();
 
           if (interactable != null) objectNameText.text = interactable.ObjectName;
           else objectNameText.text = "";
+        }
+
+        if (Input.GetButton("Fire1") && interactable != null)
+        {
+          string statusOp;
+          Item itemToSave = new Item(interactable.ObjectName);
+          
+          if (interactable.WhichSection == 99) statusOp = 
+                  InventoryManager.Instance.AddItemToSlot(itemToSave,interactable.Qty);
+          else statusOp = 
+                  InventoryManager.Instance.AddItemToSlotDeveloper(itemToSave,interactable.Qty,
+                                                            interactable.WhichSection, interactable.WhichSlot);
+          
+          Debug.Log(statusOp);
+          if (statusOp == "Item agregado al inventario") Destroy(interactable.gameObject);
         }
 
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
