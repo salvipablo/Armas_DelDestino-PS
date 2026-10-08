@@ -26,6 +26,8 @@ namespace ArmasDestinoPS.Inventory
         return;
       }
       
+      Sprite iconItem = ItemsManager.Instance.GetSprite(itemInSlot.ItemName);
+
       // Toda las condiciones, segun los items comparados, ejecutaran los enventos que estaran en InventoryManager.
       
       // Usando el ItemName, si los dos son de distino tipo, cancelar cualquier operacion ya que no se pueden juntar
@@ -34,7 +36,8 @@ namespace ArmasDestinoPS.Inventory
       // Usando el ItemName, si los dos son del mismo tipo, llamar al evento agregar enviando datos para verificiar cantidades y demas
       
       // Usando el ItemName, si el item que recibe esta vacio, llamar al evento mover.
-      Item itemToBeStored = new Item(itemInSlot.ItemName);
+      
+      Item itemToBeStored = new Item(1, itemInSlot.ItemName, true, "Description", iconItem);
       if (_itemInSlot.ItemName.Equals("Empty")) InventoryManager.Instance.MoveItemFromSlot(itemInSlot.InSection,
                   itemInSlot.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot, itemToBeStored, itemInSlot.Qty);
 

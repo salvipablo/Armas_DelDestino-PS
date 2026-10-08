@@ -62,7 +62,9 @@ namespace ArmasDestinoPS.Player
         if (Input.GetButton("Fire1") && interactable != null)
         {
           string statusOp;
-          Item itemToSave = new Item(interactable.ObjectName);
+          Sprite iconItem = ItemsManager.Instance.GetSprite(interactable.ObjectName);
+          
+          Item itemToSave = new Item(1, interactable.ObjectName, true, "Description", iconItem);
           
           if (interactable.WhichSection == 99) statusOp = 
                   InventoryManager.Instance.AddItemToSlot(itemToSave,interactable.Qty);

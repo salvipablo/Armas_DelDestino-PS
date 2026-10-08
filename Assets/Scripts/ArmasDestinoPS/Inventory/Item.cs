@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ArmasDestinoPS.Inventory
 {
   public class Item
@@ -7,13 +9,11 @@ namespace ArmasDestinoPS.Inventory
       public string Name { get; set; }
       public bool IsStackable { get; set; }
       public string Description { get; set; }
-      public string Icon { get; set; }
+      public Sprite Icon { get; set; }
     #endregion
 
     #region Methods
-      public Item(string name) { this.Name = name; }
-
-      public Item(int id, string name, bool isStackable, string description, string icon)
+      public Item(int id, string name, bool isStackable, string description, Sprite icon)
       {
         Id = id;
         Name = name;

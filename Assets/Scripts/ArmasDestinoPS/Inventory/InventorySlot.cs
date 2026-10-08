@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ArmasDestinoPS.Inventory
 {
   public class InventorySlot
@@ -65,7 +67,7 @@ namespace ArmasDestinoPS.Inventory
 
       public void SubtractAmount(int amount) => Quantity -= amount;
 
-      public string GetIcon() => ItemInSlot.Icon;
+      public Sprite GetIcon() => ItemInSlot.Icon;
     #endregion
   }
 }
