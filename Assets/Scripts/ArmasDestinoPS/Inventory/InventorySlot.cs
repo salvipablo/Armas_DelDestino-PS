@@ -1,4 +1,5 @@
 using UnityEngine;
+using ArmasDestinoPS.Managers;
 
 namespace ArmasDestinoPS.Inventory
 {
@@ -24,7 +25,10 @@ namespace ArmasDestinoPS.Inventory
     #endregion
     
     #region Methods
-      public bool IsItEmpty() => ItemInSlot == null;
+      public bool IsItEmpty() => Quantity == 0;
+      public Item GetItem() => ItemInSlot;
+      public Sprite GetIcon() => ItemInSlot.Icon;
+      public int GetQuantity() => Quantity;
 
       public string GetItemName()
       {
@@ -61,13 +65,14 @@ namespace ArmasDestinoPS.Inventory
 
       public void RemoveItem()
       {
-        ItemInSlot = null;
+        Sprite iconItemEmpty = ItemsManager.Instance.GetSprite("");
+        Item itemEmpty = new Item(4, "Empty", true, "Item Empty", iconItemEmpty);
+        
+        ItemInSlot = itemEmpty;
         Quantity = 0;
       }
 
       public void SubtractAmount(int amount) => Quantity -= amount;
-
-      public Sprite GetIcon() => ItemInSlot.Icon;
     #endregion
   }
 }

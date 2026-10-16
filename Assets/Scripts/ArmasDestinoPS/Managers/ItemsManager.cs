@@ -1,5 +1,4 @@
 using UnityEngine;
-using ArmasDestinoPS.Inventory;
 
 namespace ArmasDestinoPS.Managers
 {
@@ -17,25 +16,17 @@ namespace ArmasDestinoPS.Managers
     #region Constructor & Singleton
       private void Awake()
       {
-        Wood = new Item( 1, "Wood", true, "Description Wood", woodIcon);
-        Stone = new Item( 2, "Stone", true, "Description Stone", stoneIcon);
-        Peppermint = new Item( 3, "Peppermint", true, "Description Peppermint", peppermintIcon);
-        
         if (Instance != null && Instance != this) Destroy(gameObject);
         else Instance = this;
       }
     #endregion
     
     #region Methods
-      public Item Wood { get; private set; }
-      public Item Stone { get; private set; }
-      public Item Peppermint { get; private set; }
-
       public Sprite GetSprite(string itemName)
       {
-        if (itemName.Equals("Stone")) return Stone.Icon;
-        if (itemName.Equals("Wood"))  return Wood.Icon;
-        if (itemName.Equals("Peppermint")) return Peppermint.Icon;
+        if (itemName.Equals("Stone")) return stoneIcon;
+        if (itemName.Equals("Wood"))  return woodIcon;
+        if (itemName.Equals("Peppermint")) return peppermintIcon;
         
         return emptyIcon;
       }

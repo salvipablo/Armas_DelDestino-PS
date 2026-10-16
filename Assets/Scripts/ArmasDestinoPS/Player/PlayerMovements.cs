@@ -70,9 +70,8 @@ namespace ArmasDestinoPS.Player
                   InventoryManager.Instance.AddItemToSlot(itemToSave,interactable.Qty);
           else statusOp = 
                   InventoryManager.Instance.AddItemToSlotDeveloper(itemToSave,interactable.Qty,
-                                                            interactable.WhichSection, interactable.WhichSlot);
+                                                            interactable.WhichSection - 1, interactable.WhichSlot - 1);
           
-          Debug.Log(statusOp);
           if (statusOp == "Item agregado al inventario") Destroy(interactable.gameObject);
         }
 

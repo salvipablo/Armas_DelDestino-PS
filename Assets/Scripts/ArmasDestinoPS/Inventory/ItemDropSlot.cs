@@ -18,40 +18,43 @@ namespace ArmasDestinoPS.Inventory
     {
       if (eventData.pointerDrag == null) return;
 
-      ItemInSlot itemInSlot = eventData.pointerDrag.GetComponent<ItemInSlot>();
+      ItemInSlot draggedItem = eventData.pointerDrag.GetComponent<ItemInSlot>();
 
-      if (itemInSlot == null)
+      if (draggedItem == null)
       {
         Debug.LogWarning($"El objeto {eventData.pointerDrag.name} no tiene un componente ItemInSlot.");
         return;
       }
       
-      Sprite iconItem = ItemsManager.Instance.GetSprite(itemInSlot.ItemName);
+      Sprite iconItem = ItemsManager.Instance.GetSprite(draggedItem.ItemName);
+      Item itemToBeStored = new Item(1, draggedItem.ItemName, true, "Description", iconItem);
 
       // Toda las condiciones, segun los items comparados, ejecutaran los enventos que estaran en InventoryManager.
       
       // Usando el ItemName, si los dos son de distino tipo, cancelar cualquier operacion ya que no se pueden juntar
-      if (itemInSlot.ItemName == _itemInSlot.ItemName) return;
+      //if (draggedItem.ItemName == _itemInSlot.ItemName) return;
       
       // Usando el ItemName, si los dos son del mismo tipo, llamar al evento agregar enviando datos para verificiar cantidades y demas
       
-      // Usando el ItemName, si el item que recibe esta vacio, llamar al evento mover.
       
-      Item itemToBeStored = new Item(1, itemInSlot.ItemName, true, "Description", iconItem);
-      if (_itemInSlot.ItemName.Equals("Empty")) InventoryManager.Instance.MoveItemFromSlot(itemInSlot.InSection,
-                  itemInSlot.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot, itemToBeStored, itemInSlot.Qty);
+      
+      // Usando el ItemName, si el item que recibe esta vacio, llamar al evento mover.
+      if (_itemInSlot.ItemName.Equals("Empty")) InventoryManager.Instance.MoveItemFromSlot(draggedItem.InSection,
+              draggedItem.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot, itemToBeStored, draggedItem.Qty);
 
-      // Debug.Log($"Item recibido: {itemInSlot.ItemName}");
-      // Debug.Log($"Sección: {itemInSlot.InSection}");
-      // Debug.Log($"Slot: {itemInSlot.InSlot}");
-      // Debug.Log($"Cantidad: {itemInSlot.Qty}");
+
+      
+      // Debug.Log($"Item recibido: {draggedItem.ItemName}");
+      // Debug.Log($"De la Sección: {draggedItem.InSection}");
+      // Debug.Log($"Del Slot: {draggedItem.InSlot}");
+      // Debug.Log($"Y con una cantidad de: {draggedItem.Qty}");
       //
       // Debug.Log($"--------------------------------------------------------");
       //
-      // Debug.Log($"Yo so un item de nombre: {_itemInSlot.ItemName}");
+      // Debug.Log($"El que recibe es un item de nombre: {_itemInSlot.ItemName}");
       // Debug.Log($"Soy de la Sección: {_itemInSlot.InSection}");
       // Debug.Log($"Estoy en el Slot: {_itemInSlot.InSlot}");
-      // Debug.Log($"Y tengo la Cantidad: {_itemInSlot.Qty}");
+      // Debug.Log($"Y tengo la Cantidad de: {_itemInSlot.Qty}");
     }
   }
 }

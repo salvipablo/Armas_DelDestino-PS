@@ -1,5 +1,6 @@
 using UnityEngine;
 using ArmasDestinoPS.Inventory;
+using ArmasDestinoPS.UI;
 
 namespace ArmasDestinoPS.Managers
 {
@@ -10,6 +11,8 @@ namespace ArmasDestinoPS.Managers
       [SerializeField] private GameObject inventory;
       public bool TheInventoryOpen;
       private InventoryGame _inventoryGame;
+      [SerializeField] private InventoryUI inventoryUI;
+      public int actualSection = 0;
     #endregion
 
     #region Methods
@@ -23,6 +26,9 @@ namespace ArmasDestinoPS.Managers
       {
         TheInventoryOpen = false;
         _inventoryGame = InventoryGame.GetInventory();
+        string statusFillInventory = FillDeveloperInventorySlots();
+        
+        if (statusFillInventory == "Inventario recargado") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
       }
 
       void Update()
@@ -44,22 +50,77 @@ namespace ArmasDestinoPS.Managers
       public void MoveItemFromSlot(int fromWhichSectionDrag, int fromWhichSlotDrag, int whichDragSection,
                                                                             int whichDragSlot, Item item, int quantity)
       {
-        string statusOp = _inventoryGame.PlaceItemInSlot(fromWhichSectionDrag, fromWhichSlotDrag, whichDragSection,
-                                                                                        whichDragSlot, item, quantity);
-        Debug.Log(statusOp);
+        string statusOp = _inventoryGame.PlaceItemInSlot(fromWhichSectionDrag - 1, fromWhichSlotDrag - 1,
+                                                              whichDragSection - 1, whichDragSlot - 1, item, quantity);
+        //if (statusOp == "Item desplazado al slot.") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
       }
       
       public string AddItemToSlot(Item item, int amount)
       {
+        // Envio el item a agregar al inventario logico
         string statusOp = _inventoryGame.AddItem(item, amount);
+        
+        // Si se almaceno el item llamo a la actualizacion del inventario.
+        if (statusOp == "Item agregado al inventario") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
+        
+        // Retorno el estado para que el metodo CheckInteraction(), sepa que paso y en caso de ser agregado pueda
+        // eliminarse el  item del mundo.
         return statusOp;
       }
 
       #region Developer
         public string AddItemToSlotDeveloper(Item item, int amount, int section, int numberSlot)
         {
+          // Envio el item a agregar al inventario logico, al metodo developer.
           string statusOp = _inventoryGame.AddItemForDeveloper(item, amount, section, numberSlot);
+
+          // Si se almaceno el item llamo a la actualizacion del inventario.
+          if (statusOp == "Item agregado al inventario") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
+          
+          // Retorno el estado para que el metodo CheckInteraction(), sepa que paso y en caso de ser agregado pueda
+          // eliminarse el  item del mundo.
           return statusOp;
+        }
+
+        public string FillDeveloperInventorySlots()
+        {
+          InventorySlot[] slots = _inventoryGame.GetSection(0).GetSlots();
+          
+          Sprite iconItemEmpty = ItemsManager.Instance.GetSprite("");
+          Sprite iconItemWood = ItemsManager.Instance.GetSprite("Wood");
+          Sprite iconItemStone = ItemsManager.Instance.GetSprite("Stone");
+          Sprite iconItemPeppermint = ItemsManager.Instance.GetSprite("Peppermint");
+          
+          Item itemWood = new Item(1, "Wood", true, "Description", iconItemWood);
+          Item itemStone = new Item(2, "Stone", true, "Description", iconItemStone);
+          Item itemPeppermint = new Item(3, "Peppermint", true, "Description", iconItemPeppermint);
+          Item itemEmpty = new Item(4, "Empty", true, "Item Empty", iconItemEmpty);
+
+          for (int i = 0; i < slots.Length; i++)
+          {
+            
+            if (i == 0)
+            {
+              slots[i].SaveItem(itemWood, 5);
+              continue;
+            }
+
+            if (i == 3)
+            {
+              slots[i].SaveItem(itemStone, 10);
+              continue;
+            }
+
+            if (i == 7)
+            {
+              slots[i].SaveItem(itemPeppermint, 2);
+              continue;
+            }
+            
+            slots[i].SaveItem(itemEmpty, 0);
+          }
+
+          return "Inventario recargado";
         }
       #endregion
     #endregion

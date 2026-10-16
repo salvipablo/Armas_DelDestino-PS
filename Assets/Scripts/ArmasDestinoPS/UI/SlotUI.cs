@@ -10,7 +10,6 @@ namespace ArmasDestinoPS.UI
     #region Properties
       [Header("Visual")]
       [SerializeField] private Image itemImage;
-      [SerializeField] private Sprite emptySprite;
 
       [Header("Slot")]
       [SerializeField] private TMP_Text quantityText;
@@ -23,14 +22,13 @@ namespace ArmasDestinoPS.UI
     #endregion
 
     #region Methods
-      public void SetEmpty()
+      public void SetEmpty(Item item)
       {
-        itemImage.sprite = emptySprite;
-
-        quantityText.gameObject.SetActive(false);
-        deleteButton.gameObject.SetActive(false);
-
+        itemImage.sprite = item.Icon;
+        quantityText.text = 0.ToString();
         draggableItem.enabled = false;
+        
+        itemInSlot.SetSection(2);
       }
 
 
@@ -41,9 +39,15 @@ namespace ArmasDestinoPS.UI
         quantityText.text = quantity.ToString();
         quantityText.gameObject.SetActive(quantity > 1);
 
-        deleteButton.gameObject.SetActive(true);
-
         draggableItem.enabled = true;
+      }
+
+      public void SetItemInSlot(int numSection, int numSlot, string itemName, int quantity)
+      {
+        itemInSlot.SetSection(numSection);
+        itemInSlot.SetSlot(numSlot);
+        itemInSlot.UpdateItemName(itemName);
+        itemInSlot.UpdateQty(quantity);
       }
     #endregion
   }
