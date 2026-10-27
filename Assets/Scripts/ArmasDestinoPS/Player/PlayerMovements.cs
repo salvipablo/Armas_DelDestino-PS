@@ -24,7 +24,7 @@ namespace ArmasDestinoPS.Player
       private void Start()
       {
         _rb = GetComponent<Rigidbody>();
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         _camera = transform.Find("Camera");
         itCanJump =  true;
       }
@@ -67,7 +67,7 @@ namespace ArmasDestinoPS.Player
           Item itemToSave = new Item(1, interactable.ObjectName, true, "Description", iconItem);
           
           if (interactable.WhichSection == 99) statusOp = 
-                  InventoryManager.Instance.AddItemToSlot(itemToSave,interactable.Qty);
+                  InventoryManager.Instance.AddItemToSlot(itemToSave, interactable.Qty);
           else statusOp = 
                   InventoryManager.Instance.AddItemToSlotDeveloper(itemToSave,interactable.Qty,
                                                             interactable.WhichSection - 1, interactable.WhichSlot - 1);

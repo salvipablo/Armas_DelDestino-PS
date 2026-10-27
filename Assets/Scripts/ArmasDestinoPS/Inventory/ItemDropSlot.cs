@@ -34,8 +34,10 @@ namespace ArmasDestinoPS.Inventory
       // Usando el ItemName, si los dos son de distino tipo, cancelar cualquier operacion ya que no se pueden juntar
       //if (draggedItem.ItemName == _itemInSlot.ItemName) return;
       
-      // Usando el ItemName, si los dos son del mismo tipo, llamar al evento agregar enviando datos para verificiar cantidades y demas
-      
+      // Usando el ItemName, si los dos son del mismo tipo, llamar al evento mover y que este verifique si se puede.
+      if (_itemInSlot.ItemName.Equals(draggedItem.ItemName)) InventoryManager.Instance.MoveItemFromSlot(
+        draggedItem.InSection, draggedItem.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot,
+                                                                            itemToBeStored, draggedItem.Qty);
       
       
       // Usando el ItemName, si el item que recibe esta vacio, llamar al evento mover.

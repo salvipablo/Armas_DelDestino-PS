@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ArmasDestinoPS.UI;
 
 namespace ArmasDestinoPS.Inventory
 {
@@ -17,6 +18,8 @@ namespace ArmasDestinoPS.Inventory
 
       [SerializeField] private Canvas _dragCanvas;
       private Vector3 _dragOffset;
+      
+      [SerializeField] private InventoryUI inventoryUI;
     #endregion
 
     #region Methods
@@ -82,7 +85,7 @@ namespace ArmasDestinoPS.Inventory
         // Volvemos a la posición original.
         _rectTransform.anchoredPosition = _originalPosition;
 
-        //Debug.Log($"Terminando drag: {gameObject.name}");
+        inventoryUI.UpdateInventory(0);
       }
     #endregion
   }

@@ -28,7 +28,7 @@ namespace ArmasDestinoPS.Managers
         _inventoryGame = InventoryGame.GetInventory();
         string statusFillInventory = FillDeveloperInventorySlots();
         
-        if (statusFillInventory == "Inventario recargado") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
+        if (statusFillInventory == "Inventario recargado") inventoryUI.UpdateInventory(actualSection);
       }
 
       void Update()
@@ -52,7 +52,7 @@ namespace ArmasDestinoPS.Managers
       {
         string statusOp = _inventoryGame.PlaceItemInSlot(fromWhichSectionDrag - 1, fromWhichSlotDrag - 1,
                                                               whichDragSection - 1, whichDragSlot - 1, item, quantity);
-        //if (statusOp == "Item desplazado al slot.") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
+        Debug.Log(statusOp);
       }
       
       public string AddItemToSlot(Item item, int amount)
@@ -61,7 +61,7 @@ namespace ArmasDestinoPS.Managers
         string statusOp = _inventoryGame.AddItem(item, amount);
         
         // Si se almaceno el item llamo a la actualizacion del inventario.
-        if (statusOp == "Item agregado al inventario") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
+        if (statusOp == "Item agregado al inventario") inventoryUI.UpdateInventory(actualSection);
         
         // Retorno el estado para que el metodo CheckInteraction(), sepa que paso y en caso de ser agregado pueda
         // eliminarse el  item del mundo.
@@ -75,7 +75,7 @@ namespace ArmasDestinoPS.Managers
           string statusOp = _inventoryGame.AddItemForDeveloper(item, amount, section, numberSlot);
 
           // Si se almaceno el item llamo a la actualizacion del inventario.
-          if (statusOp == "Item agregado al inventario") inventoryUI.UpdateInventory(actualSection, _inventoryGame);
+          if (statusOp == "Item agregado al inventario") inventoryUI.UpdateInventory(actualSection);
           
           // Retorno el estado para que el metodo CheckInteraction(), sepa que paso y en caso de ser agregado pueda
           // eliminarse el  item del mundo.
@@ -107,7 +107,7 @@ namespace ArmasDestinoPS.Managers
 
             if (i == 3)
             {
-              slots[i].SaveItem(itemStone, 10);
+              slots[i].SaveItem(itemStone, 50);
               continue;
             }
 

@@ -19,7 +19,7 @@ namespace ArmasDestinoPS.Inventory
 
       public static InventoryGame GetInventory(int numSections = 4)
       {
-        if (_inventory == null) return new InventoryGame(numSections);
+        if (_inventory == null) _inventory = new InventoryGame(numSections);
         return _inventory;
       }
     #endregion

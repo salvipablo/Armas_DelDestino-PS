@@ -25,19 +25,23 @@ namespace ArmasDestinoPS.UI
       public void SetEmpty(Item item)
       {
         itemImage.sprite = item.Icon;
-        quantityText.text = 0.ToString();
-        draggableItem.enabled = false;
         
-        itemInSlot.SetSection(2);
+        quantityText.text = 0.ToString();
+        quantityText.gameObject.SetActive(false);
+        
+        deleteButton.gameObject.SetActive(false);
+        
+        draggableItem.enabled = false;
       }
-
 
       public void SetItem(Item item, int quantity)
       {
         itemImage.sprite = item.Icon;
 
         quantityText.text = quantity.ToString();
-        quantityText.gameObject.SetActive(quantity > 1);
+        quantityText.gameObject.SetActive(true);
+        
+        deleteButton.gameObject.SetActive(true);
 
         draggableItem.enabled = true;
       }
