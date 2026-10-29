@@ -13,6 +13,8 @@ namespace ArmasDestinoPS.Managers
       private InventoryGame _inventoryGame;
       [SerializeField] private InventoryUI inventoryUI;
       public int actualSection = 0;
+
+      [SerializeField] private GameObject[] cntsSlots;
     #endregion
 
     #region Methods
@@ -47,6 +49,16 @@ namespace ArmasDestinoPS.Managers
         }
       }
 
+      public void ShowCntSlots(int section)
+      {
+        cntsSlots[0].SetActive(false);
+        cntsSlots[1].SetActive(false);
+        cntsSlots[2].SetActive(false);
+        cntsSlots[3].SetActive(false);
+        
+        cntsSlots[section - 1].SetActive(true);
+      }
+      
       public void MoveItemFromSlot(int fromWhichSectionDrag, int fromWhichSlotDrag, int whichDragSection,
                                                                             int whichDragSlot, Item item, int quantity)
       {

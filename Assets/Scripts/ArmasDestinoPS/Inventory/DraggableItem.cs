@@ -25,6 +25,7 @@ namespace ArmasDestinoPS.Inventory
     #region Methods
       private void Awake()
       {
+        
         _rectTransform = GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
 

@@ -36,7 +36,7 @@ namespace ArmasDestinoPS.Inventory
       
       // Usando el ItemName, si los dos son del mismo tipo, llamar al evento mover y que este verifique si se puede.
       if (_itemInSlot.ItemName.Equals(draggedItem.ItemName)) InventoryManager.Instance.MoveItemFromSlot(
-        draggedItem.InSection, draggedItem.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot,
+              draggedItem.InSection, draggedItem.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot,
                                                                             itemToBeStored, draggedItem.Qty);
       
       
