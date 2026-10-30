@@ -96,42 +96,125 @@ namespace ArmasDestinoPS.Managers
 
         public string FillDeveloperInventorySlots()
         {
-          InventorySlot[] slots = _inventoryGame.GetSection(0).GetSlots();
-          
+          // Tomo los sprites para cada item.
           Sprite iconItemEmpty = ItemsManager.Instance.GetSprite("");
           Sprite iconItemWood = ItemsManager.Instance.GetSprite("Wood");
           Sprite iconItemStone = ItemsManager.Instance.GetSprite("Stone");
           Sprite iconItemPeppermint = ItemsManager.Instance.GetSprite("Peppermint");
+          Sprite iconItemBonfire = ItemsManager.Instance.GetSprite("Bonfire");
+          Sprite iconItemCopperIngot = ItemsManager.Instance.GetSprite("Copper Ingot");
+          Sprite iconItemSilverIngot = ItemsManager.Instance.GetSprite("Silver Ingot");
+          Sprite iconItemCopperOre = ItemsManager.Instance.GetSprite("Copper Ore");
+          Sprite iconItemSilverOre = ItemsManager.Instance.GetSprite("Silver Ore");
           
+          // Creo los items a usar.
+          Item itemEmpty = new Item(4, "Empty", true, "Item Empty", iconItemEmpty);
           Item itemWood = new Item(1, "Wood", true, "Description", iconItemWood);
           Item itemStone = new Item(2, "Stone", true, "Description", iconItemStone);
           Item itemPeppermint = new Item(3, "Peppermint", true, "Description", iconItemPeppermint);
-          Item itemEmpty = new Item(4, "Empty", true, "Item Empty", iconItemEmpty);
+          Item itemBonfire = new Item(3, "Bonfire", true, "Description", iconItemPeppermint);
+          Item itemCopperIngot = new Item(3, "Copper Ingot", true, "Description", iconItemPeppermint);
+          Item itemSilverIngot = new Item(3, "Silver Ingot", true, "Description", iconItemPeppermint);
+          Item itemCopperOre = new Item(3, "Copper Ore", true, "Description", iconItemPeppermint);
+          Item itemSilverOre = new Item(3, "Silver Ore", true, "Description", iconItemPeppermint);
+          
+          // Slots de la seccion 0.
+          InventorySlot[] slots = _inventoryGame.GetSection(0).GetSlots();
 
-          for (int i = 0; i < slots.Length; i++)
-          {
-            
-            if (i == 0)
-            {
-              slots[i].SaveItem(itemWood, 5);
-              continue;
-            }
+          slots[0].SaveItem(itemWood, 5);
+          slots[1].SaveItem(itemEmpty, 5);
+          slots[2].SaveItem(itemEmpty, 5);
+          slots[3].SaveItem(itemStone, 50);
+          slots[4].SaveItem(itemEmpty, 5);
+          slots[5].SaveItem(itemEmpty, 5);
+          slots[6].SaveItem(itemEmpty, 5);
+          slots[7].SaveItem(itemPeppermint, 2);
+          slots[8].SaveItem(itemEmpty, 0);
+          slots[9].SaveItem(itemEmpty, 0);
+          slots[10].SaveItem(itemEmpty, 0);
+          slots[11].SaveItem(itemEmpty, 0);
+          slots[12].SaveItem(itemEmpty, 0);
+          slots[13].SaveItem(itemEmpty, 0);
+          slots[14].SaveItem(itemEmpty, 0);
+          slots[15].SaveItem(itemEmpty, 0);
+          slots[16].SaveItem(itemEmpty, 0);
+          slots[17].SaveItem(itemEmpty, 0);
+          slots[18].SaveItem(itemEmpty, 0);
+          slots[19].SaveItem(itemEmpty, 0);
 
-            if (i == 3)
-            {
-              slots[i].SaveItem(itemStone, 50);
-              continue;
-            }
+          // Slots de la seccion 1.
+          slots = _inventoryGame.GetSection(1).GetSlots();
 
-            if (i == 7)
-            {
-              slots[i].SaveItem(itemPeppermint, 2);
-              continue;
-            }
-            
-            slots[i].SaveItem(itemEmpty, 0);
-          }
+          slots[0].SaveItem(itemWood, 5);
+          slots[1].SaveItem(itemEmpty, 5);
+          slots[2].SaveItem(itemEmpty, 5);
+          slots[3].SaveItem(itemStone, 50);
+          slots[4].SaveItem(itemEmpty, 5);
+          slots[5].SaveItem(itemEmpty, 5);
+          slots[6].SaveItem(itemEmpty, 5);
+          slots[7].SaveItem(itemPeppermint, 2);
+          slots[8].SaveItem(itemEmpty, 0);
+          slots[9].SaveItem(itemEmpty, 0);
+          slots[10].SaveItem(itemEmpty, 0);
+          slots[11].SaveItem(itemEmpty, 0);
+          slots[12].SaveItem(itemEmpty, 0);
+          slots[13].SaveItem(itemEmpty, 0);
+          slots[14].SaveItem(itemEmpty, 0);
+          slots[15].SaveItem(itemEmpty, 0);
+          slots[16].SaveItem(itemEmpty, 0);
+          slots[17].SaveItem(itemEmpty, 0);
+          slots[18].SaveItem(itemEmpty, 0);
+          slots[19].SaveItem(itemEmpty, 0);
 
+
+          // Slots de la seccion 2.
+          slots = _inventoryGame.GetSection(2).GetSlots();
+
+          slots[0].SaveItem(itemWood, 5);
+          slots[1].SaveItem(itemEmpty, 5);
+          slots[2].SaveItem(itemEmpty, 5);
+          slots[3].SaveItem(itemStone, 50);
+          slots[4].SaveItem(itemEmpty, 5);
+          slots[5].SaveItem(itemEmpty, 5);
+          slots[6].SaveItem(itemEmpty, 5);
+          slots[7].SaveItem(itemPeppermint, 2);
+          slots[8].SaveItem(itemEmpty, 0);
+          slots[9].SaveItem(itemEmpty, 0);
+          slots[10].SaveItem(itemEmpty, 0);
+          slots[11].SaveItem(itemEmpty, 0);
+          slots[12].SaveItem(itemEmpty, 0);
+          slots[13].SaveItem(itemEmpty, 0);
+          slots[14].SaveItem(itemEmpty, 0);
+          slots[15].SaveItem(itemEmpty, 0);
+          slots[16].SaveItem(itemEmpty, 0);
+          slots[17].SaveItem(itemEmpty, 0);
+          slots[18].SaveItem(itemEmpty, 0);
+          slots[19].SaveItem(itemEmpty, 0);
+          
+          // Slots de la seccion 3.
+          slots = _inventoryGame.GetSection(3).GetSlots();
+
+          slots[0].SaveItem(itemWood, 5);
+          slots[1].SaveItem(itemEmpty, 5);
+          slots[2].SaveItem(itemEmpty, 5);
+          slots[3].SaveItem(itemStone, 50);
+          slots[4].SaveItem(itemEmpty, 5);
+          slots[5].SaveItem(itemEmpty, 5);
+          slots[6].SaveItem(itemEmpty, 5);
+          slots[7].SaveItem(itemPeppermint, 2);
+          slots[8].SaveItem(itemEmpty, 0);
+          slots[9].SaveItem(itemEmpty, 0);
+          slots[10].SaveItem(itemEmpty, 0);
+          slots[11].SaveItem(itemEmpty, 0);
+          slots[12].SaveItem(itemEmpty, 0);
+          slots[13].SaveItem(itemEmpty, 0);
+          slots[14].SaveItem(itemEmpty, 0);
+          slots[15].SaveItem(itemEmpty, 0);
+          slots[16].SaveItem(itemEmpty, 0);
+          slots[17].SaveItem(itemEmpty, 0);
+          slots[18].SaveItem(itemEmpty, 0);
+          slots[19].SaveItem(itemEmpty, 0);
+          
           return "Inventario recargado";
         }
       #endregion
