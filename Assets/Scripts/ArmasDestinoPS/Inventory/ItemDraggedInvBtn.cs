@@ -23,7 +23,6 @@ namespace ArmasDestinoPS.Inventory
         return;
       }
       
-      Debug.Log(_btnInventory.inventoryBtnNumber);
       InventoryManager.Instance.ShowCntSlots(_btnInventory.inventoryBtnNumber);
     }
   }

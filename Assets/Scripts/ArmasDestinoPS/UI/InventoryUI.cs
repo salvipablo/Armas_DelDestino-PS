@@ -13,8 +13,20 @@ namespace ArmasDestinoPS.UI
       public void UpdateInventory(int numSection)
       {
         InventoryGame inventoryGame = InventoryGame.GetInventory();
-        InventorySlot[] logicalSlots = inventoryGame.GetSection(numSection).GetSlots();
         
+        if(numSection != 99) UpdateSection(numSection, inventoryGame);
+        else
+        {
+          UpdateSection(0, inventoryGame);
+          UpdateSection(1, inventoryGame);
+          UpdateSection(2, inventoryGame);
+          UpdateSection(3, inventoryGame);
+        }
+      }
+
+      public void UpdateSection(int numSection, InventoryGame inventoryGame)
+      {
+        InventorySlot[] logicalSlots = inventoryGame.GetSection(numSection).GetSlots();
         SlotUI[] slotUis = cntSlots[numSection].GetComponentsInChildren<SlotUI>();
         
         for (int i = 0; i < slotUis.Length; i++)

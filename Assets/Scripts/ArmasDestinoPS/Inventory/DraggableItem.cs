@@ -1,3 +1,4 @@
+using ArmasDestinoPS.Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,11 +21,14 @@ namespace ArmasDestinoPS.Inventory
       private Vector3 _dragOffset;
       
       [SerializeField] private InventoryUI inventoryUI;
+      
+      private InventoryManager _inventoryManager;
     #endregion
 
     #region Methods
       private void Awake()
       {
+        _inventoryManager = InventoryManager.Instance;
         
         _rectTransform = GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
@@ -49,28 +53,21 @@ namespace ArmasDestinoPS.Inventory
         _canvasGroup.blocksRaycasts = false;
 
         // Calculamos la posición del mouse en el espacio del DragCanvas.
-        RectTransform dragCanvasRect =
-          _dragCanvas.transform as RectTransform;
+        RectTransform dragCanvasRect = _dragCanvas.transform as RectTransform;
 
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
-              dragCanvasRect,
-              eventData.position,
-              eventData.pressEventCamera,
-              out Vector3 worldPosition))
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(dragCanvasRect, eventData.position,
+                                                        eventData.pressEventCamera, out Vector3 worldPosition))
         {
-          // Guardamos la distancia entre el mouse y el pivot del Image.
-          _dragOffset = _rectTransform.position - worldPosition;
+          _dragOffset = _rectTransform.position - worldPosition;  // Guardamos distancia entre mouse y pivot del Image.
         }
-
-        //Debug.Log($"Comenzando drag: {gameObject.name}");
       }
 
       public void OnDrag(PointerEventData eventData)
       {
         RectTransform dragCanvasRect = _dragCanvas.transform as RectTransform;
 
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(dragCanvasRect,
-                eventData.position, eventData.pressEventCamera, out Vector3 worldPosition))
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(dragCanvasRect, eventData.position,
+                                                      eventData.pressEventCamera, out Vector3 worldPosition))
         {
           _rectTransform.position = worldPosition + _dragOffset;
         }
@@ -86,7 +83,15 @@ namespace ArmasDestinoPS.Inventory
         // Volvemos a la posición original.
         _rectTransform.anchoredPosition = _originalPosition;
 
-        inventoryUI.UpdateInventory(0);
+        if (_inventoryManager.uiNeedToBeUpdated)
+        {
+          inventoryUI.UpdateInventory(_inventoryManager.updateSections[0]);
+          
+          if (_inventoryManager.updateSections[0] != _inventoryManager.updateSections[1])
+          {
+            inventoryUI.UpdateInventory(_inventoryManager.updateSections[1]);
+          }
+        }
       }
     #endregion
   }

@@ -166,9 +166,9 @@ namespace ArmasDestinoPS.Inventory
         }
       }
 
-      public void SubtractAmountInSlot(int numberSection, int numberslot, int amount)
+      public void SubtractAmountInSlot(int numberSection, int numberSlot, int amount)
       {
-        InventorySlot slot = Sections[numberSection].GetSlot(numberslot);
+        InventorySlot slot = Sections[numberSection].GetSlot(numberSlot);
         slot.SubtractAmount(amount);
       }
 

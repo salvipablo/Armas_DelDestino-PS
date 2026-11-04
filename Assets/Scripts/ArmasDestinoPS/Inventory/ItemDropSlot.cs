@@ -31,32 +31,14 @@ namespace ArmasDestinoPS.Inventory
 
       // Toda las condiciones, segun los items comparados, ejecutaran los enventos que estaran en InventoryManager.
       
-      // Usando el ItemName, si los dos son de distino tipo, cancelar cualquier operacion ya que no se pueden juntar
-      //if (draggedItem.ItemName == _itemInSlot.ItemName) return;
+      if (_itemInSlot.ItemName.Equals(draggedItem.ItemName) && draggedItem.Qty == 50 || _itemInSlot.Qty == 50) return;
       
-      // Usando el ItemName, si los dos son del mismo tipo, llamar al evento mover y que este verifique si se puede.
-      if (_itemInSlot.ItemName.Equals(draggedItem.ItemName)) InventoryManager.Instance.MoveItemFromSlot(
-              draggedItem.InSection, draggedItem.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot,
-                                                                            itemToBeStored, draggedItem.Qty);
-      
-      
-      // Usando el ItemName, si el item que recibe esta vacio, llamar al evento mover.
-      if (_itemInSlot.ItemName.Equals("Empty")) InventoryManager.Instance.MoveItemFromSlot(draggedItem.InSection,
-              draggedItem.InSlot, _itemInSlot.InSection, _itemInSlot.InSlot, itemToBeStored, draggedItem.Qty);
-
-
-      
-      // Debug.Log($"Item recibido: {draggedItem.ItemName}");
-      // Debug.Log($"De la Sección: {draggedItem.InSection}");
-      // Debug.Log($"Del Slot: {draggedItem.InSlot}");
-      // Debug.Log($"Y con una cantidad de: {draggedItem.Qty}");
-      //
-      // Debug.Log($"--------------------------------------------------------");
-      //
-      // Debug.Log($"El que recibe es un item de nombre: {_itemInSlot.ItemName}");
-      // Debug.Log($"Soy de la Sección: {_itemInSlot.InSection}");
-      // Debug.Log($"Estoy en el Slot: {_itemInSlot.InSlot}");
-      // Debug.Log($"Y tengo la Cantidad de: {_itemInSlot.Qty}");
+      // Usando el ItemName, si el item que recibe esta vacio o los dos son del mismo tipo, llamar al evento mover.
+      if (_itemInSlot.ItemName.Equals("Empty") || _itemInSlot.ItemName.Equals(draggedItem.ItemName))
+      {
+        InventoryManager.Instance.MoveItemFromSlot(draggedItem.InSection, draggedItem.InSlot, _itemInSlot.InSection,
+                                                          _itemInSlot.InSlot, itemToBeStored, draggedItem.Qty);
+      }
     }
   }
 }
