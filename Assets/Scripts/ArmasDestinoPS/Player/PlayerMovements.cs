@@ -3,6 +3,7 @@ using TMPro;
 using ArmasDestinoPS.Managers;
 using ArmasDestinoPS.Means;
 using ArmasDestinoPS.Inventory;
+using ArmasDestinoPS.NPCs;
 
 namespace ArmasDestinoPS.Player
 {
@@ -31,49 +32,45 @@ namespace ArmasDestinoPS.Player
 
       private void Update()
       {
-        Movements(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        if (!InventoryManager.Instance.TheInventoryOpen && !NPCManager.Instance.IsTalkingNPC())
+        {
+          Movements(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+          CheckInteraction();
+        }
       }
 
       private void Movements(float horizontalTwistMouse, float verticalTwistMouse)
       {
-        if (!InventoryManager.Instance.TheInventoryOpen)
-        {
           Walk();
           Look(horizontalTwistMouse, verticalTwistMouse);
           Jump();
-          CheckInteraction();
-        }
       }
       
       private void CheckInteraction()
       {
-        InteractableObject interactable = null;
+        InteractableObject interactableObject = null;
+        NPC npc = null;
+        
+        objectNameText.text = "";
+        
         Ray ray = new Ray(_camera.position, _camera.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
         {
           _cameraObject = hit.collider.gameObject;
-          interactable = _cameraObject.GetComponent<InteractableObject>();
+          
+          interactableObject = _cameraObject.GetComponent<InteractableObject>();
+          npc = _cameraObject.GetComponent<NPC>();
 
-          if (interactable != null) objectNameText.text = interactable.ObjectName;
-          else objectNameText.text = "";
+          if (interactableObject != null) objectNameText.text = interactableObject.ObjectName;
+          if (npc != null) objectNameText.text = npc.NPCName;
         }
-
-        if (Input.GetButton("Fire1") && interactable != null)
-        {
-          string statusOp;
-          Sprite iconItem = ItemsManager.Instance.GetSprite(interactable.ObjectName);
+        
+        // Si presiono el boton del mouse izquierdo, y estoy mirando un NPC. Inicio accion de interactuar con el.
+        if (Input.GetButton("Fire1") && npc != null) npc.StartConversation();
           
-          Item itemToSave = new Item(1, interactable.ObjectName, true, "Description", iconItem);
-          
-          if (interactable.WhichSection == 99) statusOp = 
-                  InventoryManager.Instance.AddItemToSlot(itemToSave, interactable.Qty);
-          else statusOp = 
-                  InventoryManager.Instance.AddItemToSlotDeveloper(itemToSave,interactable.Qty,
-                                                            interactable.WhichSection - 1, interactable.WhichSlot - 1);
-          
-          if (statusOp == "Item agregado al inventario") Destroy(interactable.gameObject);
-        }
+        // Si presiono el boton del mouse izquierdo, y estoy mirando un objeto. Inicio accion de juntarlo.
+        if (Input.GetButton("Fire1") && interactableObject != null) GatherResource(interactableObject);
 
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
       }
@@ -104,6 +101,22 @@ namespace ArmasDestinoPS.Player
         
         itCanJump = false;
         _rb.AddForce(new Vector3(0, jumpForce, 0));
+      }
+
+      private void GatherResource(InteractableObject interactableObject)
+      {
+        string statusOp;
+        Sprite iconItem = ItemsManager.Instance.GetSprite(interactableObject.ObjectName);
+          
+        Item itemToSave = new Item(1, interactableObject.ObjectName, true, "Description", iconItem);
+          
+        if (interactableObject.WhichSection == 99) statusOp = 
+          InventoryManager.Instance.AddItemToSlot(itemToSave, interactableObject.Qty);
+        else statusOp = 
+          InventoryManager.Instance.AddItemToSlotDeveloper(itemToSave,interactableObject.Qty,
+            interactableObject.WhichSection - 1, interactableObject.WhichSlot - 1);
+          
+        if (statusOp == "Item agregado al inventario") Destroy(interactableObject.gameObject);
       }
     #endregion
   }
