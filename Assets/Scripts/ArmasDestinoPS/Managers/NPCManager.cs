@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ArmasDestinoPS.Managers
@@ -16,7 +17,13 @@ namespace ArmasDestinoPS.Managers
         if (Instance != null && Instance != this) Destroy(gameObject);
         else Instance = this;
       }
-      
+
+      private void Update()
+      {
+        if (isTalkingNPC) Cursor.lockState = CursorLockMode.None;
+        else Cursor.lockState = CursorLockMode.Locked;
+      }
+
       public bool IsTalkingNPC() => isTalkingNPC;
       public void StartTalkNPC() => isTalkingNPC = true;
     #endregion

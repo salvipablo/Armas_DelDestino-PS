@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f05e325d652144d9bf13f538e567a5, type: 3}
+  m_Name: q_bree_0002
+  m_EditorClassIdentifier: 
+  questID: bree_0002
+  questName: Ingreso a la ciudad.
+  description: "Guybrush Threepwood hablo bien de ti, eso te concede el permiso para
+    ingresar en la ciudad, sin tener que validarte.\t"
+  npcID: G01_Bree
+  prerequisites:
+  - {fileID: 11400000, guid: 1b9dafc5102740c4cb2e75e47d9c8dbb, type: 2}
+  reward: 150

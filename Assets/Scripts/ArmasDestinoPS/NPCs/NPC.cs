@@ -1,5 +1,6 @@
 using UnityEngine;
 using ArmasDestinoPS.Managers;
+using ArmasDestinoPS.Quests;
 
 namespace ArmasDestinoPS.NPCs
 {
@@ -7,12 +8,13 @@ namespace ArmasDestinoPS.NPCs
   {
     #region Properties
       [SerializeField] private string npcName;
+      [SerializeField] private string npcID;
       
       private static NPCManager _instance;
     #endregion
 
     #region Methods
-      private void Awake() =>_instance = NPCManager.Instance;
+      private void Start() =>_instance = NPCManager.Instance;
 
       public string NPCName => npcName;
 
@@ -20,7 +22,10 @@ namespace ArmasDestinoPS.NPCs
       {
         _instance.StartTalkNPC();
         
-        Debug.Log("Estoy interactuando con un NPC.");
+        var quests = QuestManager.Instance.GetQuestsByNPC("GT_Bree");
+        
+        Debug.Log(quests[0].questData.questName);
+        Debug.Log(quests[1].questData.questName);
       }
     #endregion
   }

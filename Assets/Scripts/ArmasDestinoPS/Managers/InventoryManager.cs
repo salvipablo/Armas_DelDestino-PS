@@ -8,7 +8,7 @@ namespace ArmasDestinoPS.Managers
   public class InventoryManager : MonoBehaviour
   {
     #region Properties
-      public static InventoryManager Instance { get; set; }
+      public static InventoryManager Instance { get; private set; }
       [SerializeField] private GameObject inventory;
       public bool TheInventoryOpen;
       private InventoryGame _inventoryGame;
