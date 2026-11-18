@@ -9,6 +9,8 @@ namespace ArmasDestinoPS.Managers
       public static NPCManager Instance { get; set; }
     
       private bool isTalkingNPC = false;
+      
+      [SerializeField] private GameObject o_UiMissions;
     #endregion
 
     #region Methods
@@ -20,8 +22,14 @@ namespace ArmasDestinoPS.Managers
 
       private void Update()
       {
-        if (isTalkingNPC) Cursor.lockState = CursorLockMode.None;
-        else Cursor.lockState = CursorLockMode.Locked;
+        if (isTalkingNPC) ShowMissionUI(true);
+        else ShowMissionUI(false);
+      }
+
+      private void ShowMissionUI(bool showUI)
+      {
+        o_UiMissions.SetActive(showUI);
+        Cursor.lockState = showUI ? CursorLockMode.None : CursorLockMode.Locked;
       }
 
       public bool IsTalkingNPC() => isTalkingNPC;
