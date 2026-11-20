@@ -20,12 +20,8 @@ namespace ArmasDestinoPS.NPCs
 
       public void StartConversation()
       {
-        _instance.StartTalkNPC();
-        
-        var quests = QuestManager.Instance.GetQuestsByNPC("GT_Bree");
-        
-        Debug.Log(quests[0].questData.questName);
-        Debug.Log(quests[1].questData.questName);
+        var quests = QuestManager.Instance.GetQuestsByNPC("GT_Bree");        
+        _instance.StartTalkNPC(quests);
       }
     #endregion
   }

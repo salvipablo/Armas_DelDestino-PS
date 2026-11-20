@@ -1,4 +1,6 @@
-using System;
+using System.Collections.Generic;
+using ArmasDestinoPs.Quests;
+using ArmasDestinoPS.UI;
 using UnityEngine;
 
 namespace ArmasDestinoPS.Managers
@@ -22,18 +24,24 @@ namespace ArmasDestinoPS.Managers
 
       private void Update()
       {
-        if (isTalkingNPC) ShowMissionUI(true);
-        else ShowMissionUI(false);
-      }
-
-      private void ShowMissionUI(bool showUI)
-      {
-        o_UiMissions.SetActive(showUI);
-        Cursor.lockState = showUI ? CursorLockMode.None : CursorLockMode.Locked;
+        if (!isTalkingNPC)
+        {
+          o_UiMissions.SetActive(isTalkingNPC);
+          Cursor.lockState = isTalkingNPC ? CursorLockMode.None : CursorLockMode.Locked;
+        }
       }
 
       public bool IsTalkingNPC() => isTalkingNPC;
-      public void StartTalkNPC() => isTalkingNPC = true;
+      public void StopTalkingNPC() => isTalkingNPC = false;
+
+      public void StartTalkNPC(List<QuestInstance> quests)
+      {
+        isTalkingNPC = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+        UpdateMissionsNPC updateMissionsNpc = o_UiMissions.GetComponent<UpdateMissionsNPC>();
+        updateMissionsNpc.UpdateMissions(quests);
+      }
     #endregion
   }
 }
