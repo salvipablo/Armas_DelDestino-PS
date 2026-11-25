@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ArmasDestinoPs.Quests;
+using ArmasDestinoPS.Quests;
 using ArmasDestinoPS.UI;
 using UnityEngine;
 
@@ -41,6 +42,12 @@ namespace ArmasDestinoPS.Managers
         
         UpdateMissionsNPC updateMissionsNpc = o_UiMissions.GetComponent<UpdateMissionsNPC>();
         updateMissionsNpc.UpdateMissions(quests);
+      }
+
+      public void AcceptMission(string idMission)
+      {
+        QuestManager.Instance.ActivateQuest(idMission);
+        StopTalkingNPC();
       }
     #endregion
   }

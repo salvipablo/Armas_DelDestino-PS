@@ -3874,6 +3874,7 @@ GameObject:
   - component: {fileID: 232297856}
   - component: {fileID: 232297855}
   - component: {fileID: 232297854}
+  - component: {fileID: 232297857}
   m_Layer: 5
   m_Name: BtnAcept
   m_TagString: Untagged
@@ -3944,7 +3945,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 232297855}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 232297857}
+        m_TargetAssemblyTypeName: ArmasDestinoPS.UI.AcceptMission, Assembly-CSharp
+        m_MethodName: MissionConfirmed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &232297855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3983,6 +3996,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232297852}
   m_CullTransparentMesh: 1
+--- !u!114 &232297857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232297852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb2d0635945f7b4997eee15035c4780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idMission: 
 --- !u!1 &235762072
 GameObject:
   m_ObjectHideFlags: 0
@@ -10244,6 +10270,7 @@ GameObject:
   - component: {fileID: 534811612}
   - component: {fileID: 534811611}
   - component: {fileID: 534811610}
+  - component: {fileID: 534811613}
   m_Layer: 5
   m_Name: BtnAcept
   m_TagString: Untagged
@@ -10314,7 +10341,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 534811611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534811613}
+        m_TargetAssemblyTypeName: ArmasDestinoPS.UI.AcceptMission, Assembly-CSharp
+        m_MethodName: MissionConfirmed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &534811611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10353,6 +10392,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534811608}
   m_CullTransparentMesh: 1
+--- !u!114 &534811613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534811608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb2d0635945f7b4997eee15035c4780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idMission: 
 --- !u!1 &534959962
 GameObject:
   m_ObjectHideFlags: 0
@@ -12629,6 +12681,7 @@ GameObject:
   - component: {fileID: 652796755}
   - component: {fileID: 652796754}
   - component: {fileID: 652796753}
+  - component: {fileID: 652796756}
   m_Layer: 5
   m_Name: BtnAcept
   m_TagString: Untagged
@@ -12699,7 +12752,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 652796754}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 652796756}
+        m_TargetAssemblyTypeName: ArmasDestinoPS.UI.AcceptMission, Assembly-CSharp
+        m_MethodName: MissionConfirmed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &652796754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12738,6 +12803,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652796751}
   m_CullTransparentMesh: 1
+--- !u!114 &652796756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652796751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb2d0635945f7b4997eee15035c4780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idMission: 
 --- !u!1 &660189624
 GameObject:
   m_ObjectHideFlags: 0
@@ -21253,6 +21331,7 @@ GameObject:
   - component: {fileID: 1050549399}
   - component: {fileID: 1050549398}
   - component: {fileID: 1050549397}
+  - component: {fileID: 1050549400}
   m_Layer: 5
   m_Name: BtnAcept
   m_TagString: Untagged
@@ -21324,9 +21403,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1761885257}
-        m_TargetAssemblyTypeName: ArmasDestinoPS.Managers.NPCManager, Assembly-CSharp
-        m_MethodName: StopTalkingNPC
+      - m_Target: {fileID: 1050549400}
+        m_TargetAssemblyTypeName: ArmasDestinoPS.UI.AcceptMission, Assembly-CSharp
+        m_MethodName: MissionConfirmed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21374,6 +21453,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050549395}
   m_CullTransparentMesh: 1
+--- !u!114 &1050549400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050549395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb2d0635945f7b4997eee15035c4780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idMission: 
 --- !u!1 &1050989695
 GameObject:
   m_ObjectHideFlags: 0
@@ -37430,6 +37522,7 @@ GameObject:
   - component: {fileID: 1915357923}
   - component: {fileID: 1915357922}
   - component: {fileID: 1915357921}
+  - component: {fileID: 1915357924}
   m_Layer: 5
   m_Name: BtnAcept
   m_TagString: Untagged
@@ -37500,7 +37593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1915357922}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1915357924}
+        m_TargetAssemblyTypeName: ArmasDestinoPS.UI.AcceptMission, Assembly-CSharp
+        m_MethodName: MissionConfirmed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1915357922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37539,6 +37644,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915357919}
   m_CullTransparentMesh: 1
+--- !u!114 &1915357924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915357919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb2d0635945f7b4997eee15035c4780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idMission: 
 --- !u!1 &1916004312
 GameObject:
   m_ObjectHideFlags: 0
